@@ -2,11 +2,11 @@ import numpy as np
 import operator
 
 ops = {
-    "+" : operator.add,
-    "-" : operator.sub,
-    "*" : operator.mul,
-    "/" : operator.truediv,
-    "^" : operator.pow
+    "+": operator.add,
+    "-": operator.sub,
+    "*": operator.mul,
+    "/": operator.truediv,
+    "^": operator.pow
 }
 
 
@@ -37,3 +37,4 @@ value, error = calculate_error(matches, err_num_1, err_num_2)
 
 print(f"value: {value}")
 print(f"error: {error}")
+print(f"percentage error: {100 * error/value}")
