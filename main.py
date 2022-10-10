@@ -11,8 +11,10 @@ ops = {
 }
 
 
-def calculate_error(groups, err_1, err_2):
-    num_1, oper, num_2 = groups
+def calculate_error(groups: list, err_1: float, err_2: float):
+    num_1 = float(groups[0])
+    oper = groups[1]
+    num_2 = float(groups[2])
     if oper == "+" or oper == "-":
         return [ops[oper](num_1, num_2), err_1 + err_2]
     elif oper == "*" or oper == "/":
