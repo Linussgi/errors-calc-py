@@ -1,5 +1,6 @@
 import numpy as np
 import operator
+from typing import Iterator, Union
 
 ops = {
     "+": operator.add,
@@ -11,14 +12,15 @@ ops = {
 
 
 def calculate_error(groups, err_1, err_2):
-    if groups[1] == "+" or groups[1] == "-":
-        return [ops[groups[1]](float(groups[0]), float(groups[2])), err_1 + err_2]
-    elif groups[1] == "*" or groups[1] == "/":
-        new_val = ops[groups[1]](float(groups[0]), float(groups[2]))
-        return [new_val, new_val * np.sqrt((err_1 / float(groups[0])) ** 2 + (err_2 / float(groups[2])) ** 2)]
-    elif groups[1] == "^":
-        new_val = ops[groups[1]](float(groups[0]), float(groups[2]))
-        return [new_val, np.abs(new_val) * np.abs(float(groups[2])) * (err_1 / float(groups[0]))]
+    num_1, oper, num_2 = groups
+    if oper == "+" or oper == "-":
+        return [ops[oper](num_1, num_2), err_1 + err_2]
+    elif oper == "*" or oper == "/":
+        new_val = ops[oper](num_1, num_2)
+        return [new_val, new_val * np.sqrt((err_1 / num_1) ** 2 + (err_2 / num_2) ** 2)]
+    elif oper == "^":
+        new_val = ops[oper](num_1, num_2)
+        return [new_val, np.abs(new_val) * np.abs(num_2) * (err_1 / num_1)]
     else:
         return "Operator not recognised"
 
