@@ -1,6 +1,6 @@
 import numpy as np
 import operator
-from typing import Iterator, Union
+from typing import Union, List, Any
 
 ops = {
     "+": operator.add,
@@ -11,7 +11,7 @@ ops = {
 }
 
 
-def calculate_error(groups: list, err_1: float, err_2: float):
+def calculate_error(groups: list, err_1: float, err_2: float) -> Union[list[float], str]:
     num_1 = float(groups[0])
     oper = groups[1]
     num_2 = float(groups[2])
