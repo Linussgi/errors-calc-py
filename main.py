@@ -1,6 +1,6 @@
 import numpy as np
 import operator
-from typing import Union, List, Any
+from typing import Union
 
 ops = {
     "+": operator.add,
@@ -27,7 +27,7 @@ def calculate_error(groups: list, err_1: float, err_2: float) -> Union[list[floa
         return "Operator not recognised"
 
 
-data = input("Enter calculation: ")
+data = input("Enter calculation (include spaces between operator and numbers): ")  # Example: 2 * 4
 err_num_1 = float(input("Enter error on first number: "))
 
 matches = data.split(" ")
@@ -35,7 +35,7 @@ matches = data.split(" ")
 if matches[1] != "^":
     err_num_2 = float(input("Enter error on second number: "))
 else:
-    err_num_2 = None
+    err_num_2 = None  # Error calc not supported for error on exponent
 
 value, error = calculate_error(matches, err_num_1, err_num_2)
 
